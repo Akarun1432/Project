@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+
+    /*Scrollbar*/
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #edece8;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    /*====================================*/
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Comfortaa", sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--color-white);
+      margin: 0;
+    }
+
+    /* mobile friendly alternative to using background-attachment: fixed */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+      background-color: #edece8;
+    }
+
+    h1 {
+      font-weight: 400;
+      line-height: 1.5;
+      font-size: 35px;
+      font-family: "Audiowide", "Comfortaa", sans-serif;
+      color: #447dff;
+      width: 50%;
+      margin-left: 25%;
+      /*border-radius: 20px;
+    background: #edece8;
+    box-shadow: 5px 5px 10px #d5d4d1,
+        -5px -5px 10px #ffffff;*/
+    }
+
+    p {
+      font-size: 20px;
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 0.2rem;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+      margin: 0;
+      font-family: "Comfortaa";
+      font-size: 1rem;
+      line-height: inherit;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+    }
+
+    .container {
+      width: 90%;
+      margin: 3.125rem auto 0 auto;
+    }
+
+    @media (min-width: 576px) {
+      .container {
+        max-width: 540px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        max-width: 720px;
+      }
+    }
+
+    .header {
+      padding: 0 0.625rem;
+      margin-bottom: 1.875rem;
+    }
+
+    .description {
+      font-style: italic;
+      font-weight: 200;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+    }
+
+    .clue {
+      margin-left: 0.5rem;
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      color: #f00;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    /* form */
+
+    form {
+      background: var(--pagebg);
+      padding: 2.5rem 0.625rem;
+      border-radius: 0.25rem;
+    }
+
+    @media (min-width: 480px) {
+      form {
+        padding: 2.5rem;
+      }
+    }
+
+    .form-group {
+      margin: 0 auto 1.25rem auto;
+      padding: 0.25rem;
+    }
+
+    .form-control {
+      display: block;
+      width: 100%;
+      color: #495057;
+      background-color: #edece8;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+      font-size: 20px;
+      padding: 1rem;
+      min-height: 3rem;
+      border-radius: 9px;
+      background: #edece8;
+      box-shadow: inset 6px 6px 13px #d5d4d1, inset -6px -6px 13px #ffffff;
+    }
+
+    .form-control:focus {
+      border-color: #ffffff;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+    }
+
+    .input-radio,
+    .input-checkbox {
+      display: inline-block;
+      margin-right: 0.625rem;
+      min-height: 1.25rem;
+      min-width: 1.25rem;
+    }
+
+    .input-textarea {
+      min-height: 4rem;
+      width: 100%;
+      padding: 1rem;
+      resize: vertical;
+      border: 0px;
+      color: #535353;
+      font-size: 20px;
+      border-radius: 10px;
+      background: #edece8;
+      box-shadow: inset 6px 6px 13px #d5d4d1, inset -6px -6px 13px #ffffff;
+    }
+
+    .submit-button {
+      display: block;
+      font-size: 30px;
+      color: #818181;
+      width: 100%;
+      padding: 0.75rem;
+      border: 0px;
+      border-radius: 50px;
+      background: #edece8;
+      box-shadow: 6px 6px 12px #cecdca, -6px -6px 12px #ffffff;
+    }
+
+    #survey-form {
+      border-radius: 50px;
+      background: #edece8;
+      box-shadow: 29px 29px 58px #cecdca, -29px -29px 58px #ffffff;
+    }
+
+    #dropdown option {
+      outline: none;
+      border: none;
+      border-radius: 9px;
+      background: linear-gradient(145deg, #fefdf8, #d5d4d1);
+      box-shadow: 4px 4px 8px #d5d4d1, -4px -4px 8px #ffffff;
+    }
+
+    #description {
+      font-style: normal;
+      font-size: 15px;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: 100;
+      background: #f00;
+      width: 50%;
+      text-align: center;
+      letter-spacing: 5px;
+      margin-left: 25%;
+      border-radius: 5px;
+    }
+
+    #radio-div {
+      margin-top: 10px;
+      padding: 1rem 2rem 0.5rem 2rem;
+      border-radius: 20px;
+      background: #edece8;
+      box-shadow: 5px 5px 10px #d5d4d1, -5px -5px 10px #ffffff;
+    }
+
+    #JT {
+      margin-bottom: -5px;
+      border: none;
+    }
+
+    #flex-input {
+      display: flex;
+      width: 100%;
+      padding-left: none;
+      margin-left: none;
+    }
+
+    #age {
+      margin-left: 0px;
+      margin-right: 5em;
+      width: 30%;
+    }
+
+    #divider {
+      color: #fff;
+      border: 2px solid #fff;
+    }
+
+    #tnclink {
+      text-decoration: none;
+      font-weight: 100;
+      color: #62b1f5;
+    }
+
+    #tnclink:hover {
+      color: red;
+      font-weight: 600;
+    }
+
+    #sex {
+      width: 50%;
+    }
+
+    #FTA {
+      padding: 1rem 2rem 1rem 2rem;
+      border-radius: 20px;
+      background: #edece8;
+      box-shadow: 5px 5px 10px #d5d4d1, -5px -5px 10px #ffffff;
+    }
+
+    #footer {
+      margin: 10% 0 5% 0;
+      font-size: 15px;
+      color: #777;
+      text-align: center;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1 id="title" class="text-center">Lunar Express</h1>
+        <p id="description" class="description text-center">Boarding Form</p>
+      </header>
+
+      <form id="survey-form">
+        <div class="form-group">
+          <label id="name-label" for="name">
+            <p>Name</p>
+          </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="form-control"
+            placeholder="Enter your name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label id="email-label" for="email">
+            <p>Email</p>
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="form-control"
+            placeholder="Enter your Email"
+            required
+          />
+        </div>
+
+        <div id="flex-input">
+          <div class="form-group" id="age">
+            <label id="number-label" for="number">
+              <p>Age</p>
+            </label>
+            <input
+              type="number"
+              name="age"
+              id="number"
+              min="18"
+              max="99"
+              class="form-control"
+              placeholder="Age"
+            />
+          </div>
+          <div class="form-group" id="sex">
+            <label>
+              <p>Sex</p>
+            </label>
+            <select id="dropdown" name="role" class="form-control" required>
+              <option disabled selected value>Select</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="PNTS">Prefer not to say</option>
+            </select>
+          </div>
+        </div>
+
+        <hr id="divider" />
+        <h2>Journey Preference</h2>
+        <hr id="divider" />
+
+        <div class="form-group" id="JT">
+          <p id="JT">
+            Journey Type <br />
+            <span class="clue">Want to live with the Aliens?<br /></span>
+          </p>
+          <div id="radio-div">
+            <label>
+              <input
+                name="user-recommend"
+                value="One Way"
+                type="radio"
+                class="input-radio"
+              />One Way</label
+            >
+            <label>
+              <input
+                name="user-recommend"
+                value="Return"
+                type="radio"
+                class="input-radio"
+                checked
+              />Return</label
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p>
+            Date of your Journey<br />
+
+            <span class="clue">Flight No. - Date - Time</span>
+          </p>
+          <select id="flight" name="mostLike" class="form-control" required>
+            <option disabled selected value>
+              Select from the available Flight
+            </option>
+            <option value="f1">MEFDW1 - 01/01/2030 - 10:10 IST</option>
+            <option value="f2">MEFJV2 - 02/02/2030 - 11:11 IST</option>
+            <option value="f3">MEFBV3 - 03/03/2030 - 12:12 IST</option>
+            <option value="f4">MEFTF4 - 04/04/2030 - 13:13 IST</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <p>
+            Your preferred Class
+            <span class="clue"></span>
+          </p>
+          <select id="flight" name="mostLike" class="form-control" required>
+            <option disabled selected value>Select</option>
+            <option value="Business">Business</option>
+            <option value="Economy">Economy</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <p>
+            Flight time amenities<br />
+            <span class="clue"
+              >Check all that apply. Extra charges will impose.</span
+            >
+          </p>
+          <div id="FTA">
+            <label
+              ><input
+                name="prefer"
+                value="Nonveg"
+                type="checkbox"
+                class="input-checkbox"
+              />Non Veg Meal</label
+            >
+            <label
+              ><input
+                name="prefer"
+                value="Veg"
+                type="checkbox"
+                class="input-checkbox"
+              />Veg Meal</label
+            >
+            <label
+              ><input
+                name="prefer"
+                value="Bev"
+                type="checkbox"
+                class="input-checkbox"
+              />Beverages</label
+            >
+            <label
+              ><input
+                name="prefer"
+                value="internet"
+                type="checkbox"
+                class="input-checkbox"
+              />Internet (WiFi)
+            </label>
+            <label
+              ><input
+                name="prefer"
+                value="Mag"
+                type="checkbox"
+                class="input-checkbox"
+              />Tabloids</label
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p>Any question related to the journey?</p>
+          <textarea
+            id="comments"
+            class="input-textarea"
+            name="comment"
+            placeholder="Enter your question here..."
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input
+              name="tnc"
+              value="tncchecked"
+              type="checkbox"
+              class="input-checkbox"
+              required
+            />
+            I have read and accept all &nbsp;<a
+              href="#"
+              target="_blank"
+              id="tnclink"
+            >
+              Terms and Conditions</a
+            >
+          </label>
+        </div>
+        <button type="submit" id="submit" class="submit-button">Submit</button>
+      </form>
+      <div id="footer">
+        <footer>
+          Created by
+          <a href="https://github.com/yoursamlan" id="tnclink" target="_blank"
+            >Amlan Saha Kundu
+          </a>
+          for
+          <a
+            href="https://freecodecamp.org/yoursamlan"
+            id="tnclink"
+            target="_blank"
+            >freeCodeCamp
+          </a>
+          Responsive Web Design : Build a Survey Form Project. Thank you
+          <a href="https://neumorphism.io/" id="tnclink" target="_blank"
+            >Neumorphism.io</a
+          >
+          and
+          <a
+            href="https://codepen.io/freeCodeCamp/pen/VPaoNP"
+            id="tnclink"
+            target="_blank"
+            >FCC: SurveyForm</a
+          >
+          for help.
+        </footer>
+      </div>
+    </div>
+
+    <!-- partial:index.partial.html -->
+    <!-- 
+
+Hello Camper!
+
+Please read the README below in the JS Editor before beginning. Feel free to delete this message once you have read it. Good luck and Happy Coding! 
+
+- The freeCodeCamp Team 
+
+-->
+    <!-- partial -->
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
